@@ -1,0 +1,228 @@
+<!DOCTYPE html>  <html>  
+<head>  
+<title>Happy Birthday dear  Gopayya🎉🥳😘 💖</title>  
+<style>  
+body{  
+margin:0;  
+font-family:Arial;  
+background:linear-gradient(45deg,#ff4e8a,#ff9ecf);  
+color:white;  
+text-align:center;  
+overflow:hidden;  
+}  /* Lock Screen */
+#lock{
+position:absolute;
+width:100%;
+height:100vh;
+background:black;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+}
+
+input{
+padding:12px;
+font-size:18px;
+border-radius:25px;
+border:none;
+text-align:center;
+}
+
+button{
+margin:8px;
+padding:10px 18px;
+font-size:16px;
+border:none;
+border-radius:25px;
+background:#ff4e8a;
+color:white;
+cursor:pointer;
+}
+
+button:hover{
+background:white;
+color:#ff4e8a;
+}
+
+#main{
+display:none;
+padding-top:60px;
+}
+
+.menu{
+margin-top:20px;
+}
+
+.section{
+display:none;
+margin-top:20px;
+}
+
+/* Floating hearts */
+.heart{
+position:absolute;
+bottom:-10px;
+font-size:20px;
+animation:float 5s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0);opacity:1;}
+100%{transform:translateY(-100vh);opacity:0;}
+}
+
+#proposal{
+display:none;
+position:fixed;
+top:35%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+color:#ff4e8a;
+padding:30px;
+border-radius:20px;
+font-size:22px;
+}
+</style>
+
+</head>  
+<body>  <audio id="bgMusic" loop>  
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">  
+</audio>  <!-- LOCK -->  <div id="lock">  
+<h2>Enter Gopayya's Birthday Month 💖</h2>  
+<input type="password" id="monthInput">  
+<button onclick="checkMonth()">Unlock Love 🎁</button>  
+</div>  <!-- MAIN -->  <div id="main">  
+<h1>Happy Birthday My Gopayya 💖🎂</h1>  <div class="menu">  
+<button onclick="openSection('story')">Our Love Story 💌</button>  
+<button onclick="openSection('game1')">Heart Game 💘</button>  
+<button onclick="openSection('quiz')">Love Quiz 💕</button>  
+<button onclick="openSection('kiss')">Catch The Kiss 💋</button>  
+<button onclick="showProposal()">Special Surprise 💍</button>  
+</div>  <!-- STORY -->  <div class="section" id="story">  
+<h2>To My Dearest Gopayya 💖</h2>  
+<p>  
+From the day you came into my life, everything changed.    
+You are my strength 💪, my smile 😊, my peace 🌸.    
+Every heartbeat whispers your name Gopayya 💞.    
+I am lucky to love you and be loved by you.    
+Today is not just your birthday…    
+It’s the day my happiness was born 🎂✨    
+</p>  
+</div>  <!-- GAME 1 -->  <div class="section" id="game1">  
+<h2>Click the Hearts 💖</h2>  
+<p>Score: <span id="score">0</span></p>  
+<div id="heartContainer"></div>  
+</div>  <!-- QUIZ -->  <div class="section" id="quiz">  
+<h2>Do You Know Me Gopayya? 😘</h2>  <p>1. What is my favourite color?</p>  
+<button onclick="checkQuiz(this,'pink')">Pink</button>  
+<button onclick="checkQuiz(this,'blue')">Blue</button>  <p>2. Who do I love the most?</p>  
+<button onclick="checkQuiz(this,'gopayya')">Gopayya 💖</button>  
+<button onclick="checkQuiz(this,'chocolate')">Chocolate</button>  <p>3. What makes me happiest?</p>  
+<button onclick="checkQuiz(this,'you')">You 😊</button>  
+<button onclick="checkQuiz(this,'sleep')">Sleep</button>  <p id="quizResult"></p>  
+</div>  <!-- KISS GAME -->  <div class="section" id="kiss">  
+<h2>Catch The Kiss 💋</h2>  
+<p>Score: <span id="kissScore">0</span></p>  
+<div id="kissArea"></div>  
+</div>  </div>  <!-- Proposal -->  <div id="proposal">  
+Gopayya 💖    
+Will You Stay With Me Forever? 💍    
+<br><br>  
+<button onclick="acceptLove()">YES FOREVER 💕</button>  
+</div>  <script>  
+  
+let correctMonth="03"; // Change this  
+  
+function checkMonth(){  
+let user=document.getElementById("monthInput").value;  
+if(user===correctMonth){  
+document.getElementById("lock").style.display="none";  
+document.getElementById("main").style.display="block";  
+document.getElementById("bgMusic").play();  
+startHearts();  
+}else{  
+alert("Wrong Month 😜 Try Again!");  
+}  
+}  
+  
+function startHearts(){  
+setInterval(()=>{  
+let heart=document.createElement("div");  
+heart.classList.add("heart");  
+heart.innerHTML="💖";  
+heart.style.left=Math.random()*100+"vw";  
+heart.style.fontSize=(Math.random()*30+10)+"px";  
+document.body.appendChild(heart);  
+setTimeout(()=>{heart.remove();},5000);  
+},300);  
+}  
+  
+function openSection(id){  
+let sections=document.querySelectorAll(".section");  
+sections.forEach(sec=>sec.style.display="none");  
+document.getElementById(id).style.display="block";  
+}  
+  
+/* Heart Game */  
+let score=0;  
+document.getElementById("heartContainer").onclick=function(e){  
+if(e.target.innerHTML==="💖"){  
+score++;  
+document.getElementById("score").innerText=score;  
+e.target.remove();  
+}  
+}  
+  
+setInterval(()=>{  
+let heart=document.createElement("div");  
+heart.innerHTML="💖";  
+heart.style.fontSize="40px";  
+heart.style.position="absolute";  
+heart.style.left=Math.random()*90+"vw";  
+heart.style.top=Math.random()*80+"vh";  
+heart.style.cursor="pointer";  
+document.getElementById("heartContainer").appendChild(heart);  
+},1000);  
+  
+/* Quiz */  
+function checkQuiz(btn,correct){  
+if(correct==="pink" || correct==="gopayya" || correct==="you"){  
+document.getElementById("quizResult").innerText="Correct 💖 You Know Me So Well!";  
+}else{  
+document.getElementById("quizResult").innerText="Wrong 😜 Try Again My Love!";  
+}  
+}  
+  
+/* Kiss Game */  
+let kissScore=0;  
+setInterval(()=>{  
+let kiss=document.createElement("div");  
+kiss.innerHTML="💋";  
+kiss.style.fontSize="35px";  
+kiss.style.position="absolute";  
+kiss.style.left=Math.random()*90+"vw";  
+kiss.style.top=Math.random()*80+"vh";  
+kiss.style.cursor="pointer";  
+  
+kiss.onclick=function(){  
+kissScore++;  
+document.getElementById("kissScore").innerText=kissScore;  
+kiss.remove();  
+}  
+  
+document.getElementById("kissArea").appendChild(kiss);  
+setTimeout(()=>{kiss.remove();},2000);  
+},1200);  
+  
+function showProposal(){  
+document.getElementById("proposal").style.display="block";  
+}  
+  
+function acceptLove(){  
+document.getElementById("proposal").innerHTML="I Love You Forever Gopayya 💖💞";  
+}  
+  
+</script>  </body>  
+</html>  Give web link for this code fast pls
